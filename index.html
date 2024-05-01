@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>Vite App</title>
+  <style>
+    /* Define CSS styles here */
+    #cy1, #cy2, #cy3 {
+      width: 1000px;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="top">
+      <h2>Network flow - find the cut value</h2>
+      <!-- <p>User Guide</p> -->
+      <div class="dropdown">
+        <button id="showGuide" class="dropbtn">User Guide <span class="arrow">&#9660;</span></button>
+        <div id="dropdown-content" class="dropdown-content">
+          <p>Welcome! This website is designed to help people learn how to find the cut value of a directed graph.</p>
+          <p>But first of all, what is a cut value? A cut value is when you take a graph and "cut" it into 2 groups. In an s-t cut, one group must contain s, and the other must contain t. The cut value is the number of edges that go from the s group into the t group. An edge coming from the t group to the s group does not contribute to the cut value.</p>
+          <p>It may help to imagine the node groups as bodies of land, and the s-t cut as a body of water separating the two groups, hence the dolphin :)</p>
+          <p>For instance, in this graph, { s, a, b } is in the s group, and only { t } is in the t group. Then we look at the edges that connect the groups, and see that there is only 1 edges. This makes our cut value = 4.</p>
+          <img class="pic" src="pics/graph.png" alt="Description of the image" width="350" height="180">
+          <p>On this website, you select nodes to add to the s group (brown). Any unselected nodes will be placed in the t group (green). The edges connecting the two groups will turn blue, helping you to figure out the cut value.</p>
+          <div class="row2">
+          <div class="column">
+            <img src="pics/beforeGraph.png" alt="Description of the image" width="350" height="190">
+            <img class="click" src="pics/click.png" alt="Description of the image" width="50" height="50">
+          </div>
+          <img src="pics/right-arrow.png" alt="Description of the image" width="40" height="40">
+          <img class="lower" src="pics/afterGraph.png" alt="Description of the image" width="350" height="185">
+          </div>
+          <div>
+          <p>You can use the graph to figure out the cut value, and then the input field to check your answer.</p>
+          <img class="pic3" src="pics/enterField.png" alt="Description of the image" width="250" height="105">
+          </div>
+        </div>
+      </div>
+      <div>
+        <button id="graph1Btn">Graph 1</button>
+        <button id="graph2Btn">Graph 2</button>
+        <button id="graph3Btn">Graph 3</button>
+      </div>
+      <div id="cutValue">
+        <p style="display: none;">Cut Value: <span id="value">0</span></p>
+        <p style="display: none;">Cut Value: <span id="value2">0</span></p>
+        <p style="display: none;">Cut Value: <span id="value3">0</span></p>
+      </div>
+    </div>
+    <div class="graphZone">
+      <div>
+        <div id="cy1" class="graph" style="display: block;"></div>
+        <div id="cy2" class="graph" style="display: block;"></div>
+        <div id="cy3" class="graph" style="display: block;"></div>
+      </div>
+      <div>
+        <h3>What is the cut value?</h3>
+        <input id="guessInput" class="guess" type="text" placeholder="Enter text">
+        <button id="enterButton">Enter</button>
+        <h3 id="result"></h3>
+        <div class="row2">
+          <div>
+          <p class="row"><img src="pics/brownNode.png" alt="Description of the image" width="55" height="55"> node is in s group</p>
+          <p class="row"><img class="greenNode" src="pics/greenNode.png" alt="Description of the image" width="61" height="65"> node is in t group</p>
+          </div>
+          <img src="pics/dolphin.png" alt="Description of the image" width="100" height="110">
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Network flow materials developed by Leilani Titus</p>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script> <!-- Include Cytoscape library -->
+  <script src="./counter.js"></script> <!-- Include your counter.js file -->
+  <script src="./nodes.js"></script> <!-- Include your nodes.js file -->
+</html>
