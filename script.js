@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			{ data: { id: 'et-2', label: 9,  source: 'e-2', target: 't-2' } }, // Edge connecting e to t
 			{ data: { id: 'be-2', label: 1,  source: 'b-2', target: 'e-2' } }, // Edge connecting b to e
 			{ data: { id: 'fc-2', label: 1,  source: 'f-2', target: 'c-2' } }, // Edge connecting f to c
+			{ data: { id: 'eg-2', label: 2,  source: 'e-2', target: 'g-2' } } // Edge connecting e to g
 	
 		  ],
 		style: [
