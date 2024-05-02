@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		{ data: { id: 'et-1', label: 3,  source: 'e-1', target: 't-1' } }, // Edge connecting e to t
 		{ data: { id: 'be-1', label: 4,  source: 'b-1', target: 'e-1' } }, // Edge connecting b to e
 		{ data: { id: 'fc-1', label: 5,  source: 'f-1', target: 'c-1' } }, // Edge connecting f to c
-		{ data: { id: 'eg-1', label: 2,  source: 'e-1', target: 'g-1' } } // Edge connecting e to g
+		{ data: { id: 'eg-1', label: 2,  source: 'e-1', target: 'g-1' } }, // Edge connecting e to g
 
 	  ],
 	  style: [
@@ -174,10 +174,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			{ data: { id: 'de-2', label: 4,  source: 'd-2', target: 'e-2' } }, // Edge connecting d to e
 			{ data: { id: 'ea-2', label: 6,  source: 'e-2', target: 'a-2' } }, // Edge connecting e to a
 			{ data: { id: 'df-2', label: 7,  source: 'd-2', target: 'f-2' } }, // Edge connecting d to f
-			{ data: { id: 'et-2', label: 9,  source: 'e-2', target: 't-2' } }, // Edge connecting e to t
-			{ data: { id: 'be-2', label: 1,  source: 'b-2', target: 'e-2' } }, // Edge connecting b to e
+			{ data: { id: 'et-2', label: 8,  source: 'e-2', target: 't-2' } }, // Edge connecting e to t
+			{ data: { id: 'be-2', label: 3,  source: 'b-2', target: 'e-2' } }, // Edge connecting b to e
 			{ data: { id: 'fc-2', label: 1,  source: 'f-2', target: 'c-2' } }, // Edge connecting f to c
-			{ data: { id: 'eg-2', label: 2,  source: 'e-2', target: 'g-2' } } // Edge connecting e to g
+			{ data: { id: 'eg-2', label: 2,  source: 'e-2', target: 'g-2' } }, // Edge connecting e to g
+			{ data: { id: 'ab-2', label: 4,  source: 'a-2', target: 'b-2' } }, // Edge connecting a to b
 	
 		  ],
 		style: [
@@ -235,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			{ data: { id: 'be-3', label: 1,  source: 'b-3', target: 'e-3' } }, // Edge connecting b to e
 			{ data: { id: 'fc-3', label: 4,  source: 'f-3', target: 'c-3' } }, // Edge connecting f to c
 			{ data: { id: 'fd-3', label: 3,  source: 'f-3', target: 'd-3' } }, // Edge connecting f to d
+			{ data: { id: 'ab-3', label: 3,  source: 'a-3', target: 'b-3' } }, // Edge connecting a to b
 	
 		  ],
 		style: [
