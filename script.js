@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					}
 				});
 			}
-        });
+        }); 
     };
 
 	// Add function to each graph so that nodes change correctly
