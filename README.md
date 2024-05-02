@@ -1,1 +1,1 @@
-[Network Flow Website](https://itsnotleilani.github.io)
+[Network Flow Website](https://itsnotleilani.github.io){:target="_blank"}
