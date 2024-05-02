@@ -1,42 +1,50 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-	// color palette
+	// Color palette
 	const green = 'rgb(129, 182, 34)';
 	const brown = 'rgb(164,117,81)';
 	const gray = 'rgb(204,204,204)';
 	const blue = 'rgb(0,0,255)';
 
-	function initializeScore(value, elementId, prefix) {
-        updateScore();
+	// Function to set initial cut value for each graph
+	function initialize_cut_value(value, elementId, prefix) {
+        updateValue();
 
-        function updateScore() {
+        function updateValue() {
             document.getElementById(elementId).textContent = value;
         }
 
         window[prefix + 'Cut'] = function(amt) {
             value += amt;
-            updateScore();
+            updateValue();
         };
-
         window[prefix + 'SubCut'] = function(amt) {
             value -= amt;
-            updateScore();
+            updateValue();
         };
     }
 	
-	initializeScore(7, 'value', 'first');
-    initializeScore(10, 'value2', 'second');
-	initializeScore(5, 'value3', 'third');
+	// Set initial cut value for each graph
+	initialize_cut_value(7, 'value', 'first');
+    initialize_cut_value(10, 'value2', 'second');
+	initialize_cut_value(5, 'value3', 'third');
 
+	// Set initial cut value to graph1's value
 	let currentWindow = 'first';
+
+	// Function to keep track of what window the website is on
+	// This will lead to the code setting the correct cut value
 	function switchWindow(windowName) {
 		currentWindow = windowName;
 	}
 
+	// Retrieves elements from html
 	const guessInput = document.getElementById('guessInput');
     const enterButton = document.getElementById('enterButton');
     const resultDiv = document.getElementById('result');
 
+	// Adds function to the guess input field enter button
+	// Allowing the user to enter and check their guess
 	enterButton.addEventListener('click', function() {
         // Get the value entered in the input field
         const guess = guessInput.value;
@@ -49,8 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+	// Allow user to enter and check guess by pressing Enter key
     guessInput.addEventListener('keypress', function(event) {
-        // Check if the key pressed is Enter (key code 13)
+        // Check if the key pressed is Enter
         if (event.key === 'Enter') {
             // Prevent the default behavior (form submission)
             event.preventDefault();
@@ -59,10 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+	// Adds function to each graph button
 	document.getElementById('graph1Btn').addEventListener('click', () => switchGraph('cy1', 'first'));
     document.getElementById('graph2Btn').addEventListener('click', () => switchGraph('cy2', 'second'));
     document.getElementById('graph3Btn').addEventListener('click', () => switchGraph('cy3', 'third'));
 	
+	// Function to show correct graph in graphZone
+	// Also hides all other graphs, and sets the correct cut value
 	const switchGraph = (graphId, window) => {
         const graphs = document.getElementsByClassName('graph');
         for (let i = 0; i < graphs.length; i++) {
@@ -74,9 +86,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		resultDiv.textContent = "";
     };
 
-
+	// Adds function to User Guide button
 	document.getElementById('showGuide').addEventListener('click', () => showDropdown());
 
+	// Shows user guide if the user guide button is clicked, hides if the button is clicked again
 	const showDropdown = () => {
 		if (document.getElementById("dropdown-content").style.display === 'none') {
 			document.getElementById("dropdown-content").style.display = 'block';
@@ -85,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
+	// Sets nodes, edges, style, and layout of graph1
 	var cy1 = cytoscape({
 	  container: document.getElementById('cy1'), 
 	  elements: [ 
@@ -113,8 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		{
 		  selector: 'node',
 		  style: {
-			'background-color': green, // Node color
-			'label': 'data(label)', // Display node ID as label
+			'background-color': green,
+			'label': 'data(label)', // Display node label (letter)
 			'text-halign': 'center', // Center the label horizontally
         	'text-valign': 'center', // Center the label vertically
 			'width': '50px',
@@ -124,11 +138,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		{
 		  selector: 'edge',
 		  style: {
-			'width': 2, // Edge width
-			'line-color': gray, // Edge color
-			'curve-style': 'bezier', // Curve style
-			'target-arrow-shape': 'triangle', // Arrow shape at the end of the edge
-			'label': 'data(label)', // Display node ID as label
+			'width': 2, 
+			'line-color': gray, 
+			'curve-style': 'bezier', 
+			'target-arrow-shape': 'triangle', 
+			'label': 'data(label)', // Display node label (number)
 		  }
 		}
 	  ],
@@ -140,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  }
 	});
 
+	// Sets nodes, edges, style, and layout of graph2
 	var cy2 = cytoscape({
 		container: document.getElementById('cy2'), 
 		elements: [ 
@@ -168,8 +183,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		{
 			selector: 'node',
 			style: {
-			'background-color': green, // Node color
-			'label': 'data(label)', // Display node ID as label
+			'background-color': green, 
+			'label': 'data(label)', // Display node label (letter)
 			'text-halign': 'center', // Center the label horizontally
 			'text-valign': 'center', // Center the label vertically
 			'width': '50px',
@@ -179,11 +194,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		{
 			selector: 'edge',
 			style: {
-			'width': 2, // Edge width
-			'line-color': gray, // Edge color
-			'curve-style': 'bezier', // Curve style
-			'target-arrow-shape': 'triangle', // Arrow shape at the end of the edge
-			'label': 'data(label)', // Display node ID as label
+			'width': 2, 
+			'line-color': gray, 
+			'curve-style': 'bezier', 
+			'target-arrow-shape': 'triangle', 
+			'label': 'data(label)', // Display node label (number)
 			}
 		}
 		],
@@ -195,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
+	// Sets nodes, edges, style, and layout of graph3
 	var cy3 = cytoscape({
 		container: document.getElementById('cy3'), 
 		elements: [ 
@@ -224,8 +240,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		{
 			selector: 'node',
 			style: {
-			'background-color': green, // Node color
-			'label': 'data(label)', // Display node ID as label
+			'background-color': green,
+			'label': 'data(label)', // Display node label (letter)
 			'text-halign': 'center', // Center the label horizontally
 			'text-valign': 'center', // Center the label vertically
 			'width': '50px',
@@ -236,10 +252,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			selector: 'edge',
 			style: {
 			'width': 2, // Edge width
-			'line-color': gray, // Edge color
-			'curve-style': 'bezier', // Curve style
-			'target-arrow-shape': 'triangle', // Arrow shape at the end of the edge
-			'label': 'data(label)', // Display node ID as label
+			'line-color': gray, 
+			'curve-style': 'bezier', 
+			'target-arrow-shape': 'triangle', 
+			'label': 'data(label)', // Display node label (number)
 			}
 		}
 		],
@@ -251,72 +267,73 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
+	// Set all s nodes to brown
 	cy1.style().selector('#s-1').style({
-		'background-color': brown, // Change the background color of node 's-1' to brown
+		'background-color': brown,
 	}).update();
-
-	cy1.style().selector('#t-1').style({
-		'background-color': green, // Change the background color of node 's-1' to green
-	}).update();
-
 	cy2.style().selector('#s-2').style({
-		'background-color': brown, // Change the background color of node 's-1' to brown
+		'background-color': brown, 
 	}).update();
-
-	cy2.style().selector('#t-2').style({
-		'background-color': green, // Change the background color of node 's-1' to green
-	}).update();
-
 	cy3.style().selector('#s-3').style({
-		'background-color': brown, // Change the background color of node 's-1' to brown
+		'background-color': brown, 
 	}).update();
 
-	cy3.style().selector('#t-3').style({
-		'background-color': green, // Change the background color of node 's-1' to green
-	}).update();
-
+	// Set all initial edges coming out of s nodes to blue
 	cy1.style().selector('edge[source="s-1"]').style({
-		'line-color': blue // Change the color of edges with 's-1' as the source to blue
+		'line-color': blue 
 	}).update();
-
 	cy2.style().selector('edge[source="s-2"]').style({
-		'line-color': blue // Change the color of edges with 's-1' as the source to blue
+		'line-color': blue 
 	}).update();
-
 	cy3.style().selector('edge[source="s-3"]').style({
-		'line-color': blue // Change the color of edges with 's-1' as the source to blue
+		'line-color': blue 
 	}).update();
 
+	// Function to correctly change nodes and edges when nodes are clicked or un-clicked
 	const handleNodeClick = (cy, addCutFunc, subCutFunc) => {
         cy.on('click', 'node', function(event) {
             const node = event.target;
-            if (node.id() === 't-1' || node.id() === 't-2' || node.id() === 's-1' || node.id() === 's-2' || node.id() === 't-3' || node.id() === 's-3') {
+			// Makes it so that the user is not able to change the s and t nodes
+            if (node.id() === 's-1' || node.id() === 's-2' || node.id() === 's-3' || node.id() === 't-1' || node.id() === 't-2' || node.id() === 't-3') {
                 return;
             }
-			const previousNode = node.style('background-color');
-			if (previousNode !== brown) {
+			const nodeColor = node.style('background-color');
+
+			let will_connect_to_s = false;
+
+			node.incomers('edge').forEach(function(edge) {
+				const sourceColor = edge.source().style('background-color');
+				// Check if there exists a source node that is brown
+				if (sourceColor === brown) {
+					will_connect_to_s = true;
+				}
+			});
+
+			// If node is green and will connect to s, change to brown
+			if (nodeColor !== brown && will_connect_to_s) {
 				node.style('background-color', brown);
+				// If outgoing edges are gray, change to blue and add to cut value
 				node.outgoers('edge').forEach(function(edge) {
 					if (edge.target().style('background-color') !== brown) {
 						const prevColor = edge.style('line-color');
-						console.log(prevColor);
 						if (prevColor === gray) {
 							edge.style('line-color', blue);
 							addCutFunc(edge.data('label'));
 						}
-					} // only allow a node and edge to turn brown/blue
-					  // if connected to s or connected to brown node connected to s
+					}
 				});
+				// If incoming edges are blue, change to gray and subtract from cut value
 				node.incomers('edge').forEach(function(edge) {
 					const prevColor = edge.style('line-color');
-					console.log(prevColor);
 					if (prevColor === blue) {
 						edge.style('line-color', gray);
 						subCutFunc(edge.data('label'));
 					}
 				});
+			// If node is brown, change to green
 			} else {
 				node.style('background-color', green);
+				// If incoming edges are gray, change to blue and add to cut value
 				node.incomers('edge').forEach(function(edge) {
 					if (edge.source().style('background-color') === brown) {
 						const prevColor = edge.style('line-color');
@@ -326,6 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						}
 					}
 				});
+				// If outgoing edges are blue, change to gray and subtract from cut value
 				node.outgoers('edge').forEach(function(edge) {
 					const prevColor = edge.style('line-color');
 					if (prevColor === blue) {
@@ -336,9 +354,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
         });
     };
+
+	// Add function to each graph so that nodes change correctly
 	handleNodeClick(cy1, firstCut, firstSubCut);
 	handleNodeClick(cy2, secondCut, secondSubCut);
 	handleNodeClick(cy3, thirdCut, thirdSubCut);
 
+	// Set initial graph to graph1
 	switchGraph('cy1', 'first');
 });

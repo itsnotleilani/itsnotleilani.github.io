@@ -25,7 +25,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -35,32 +34,7 @@ h1 {
   line-height: 1.1;
 }
 
-#app {
-  /* max-width: 1280px; */
-  margin: 0 auto;
-  padding: 1rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 button {
-  /* border-radius: 8px; */
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -79,30 +53,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-/* .main {
-  background-color: white;
-  padding: 1em;
-  width: 
-} */
-
 .main {
   margin: 1em;
 }
 
-.top {
+.top-container {
   text-align: left;
   background-color: #cff9ff;
   padding: 1em;
@@ -123,7 +78,7 @@ button:focus-visible {
 .footer {
   background-color: rgb(68, 68, 244);
   color: white;
-  width: 91.5em;
+  width: 91.65em;
   height: 2em;
   margin-top: 1em;
   padding: .3em;
@@ -131,28 +86,29 @@ button:focus-visible {
   text-align: center;
 }
 
-#cy {
-  width: 300px;
-  height: 300px;
+/* Sets size of graphs */
+#cy1, #cy2, #cy3 {
+  width: 1000px;
+  height: 400px;
   display: block;
 }
 
-.guess {
-  width: 200px; /* Adjust width as needed */
+.guess-input-field {
+  width: 200px; 
   padding: 10px;
-  border: 1px solid lightgray; /* Light gray border */
-  border-radius: 5px; /* Rounded corners */
-  background-color: white; /* White background */
-  color: black; /* Text color */
+  border: 1px solid lightgray;
+  border-radius: 5px; 
+  background-color: white; 
+  color: black;
   outline: none; /* Remove default focus outline */
 }
 
-.guess:focus {
+.guess-input-field:focus {
   color: gray; /* Change border color on focus */
 }
 
-/* Dropdown button */
-.dropbtn {
+/* User Guide button */
+.user-guide-btn {
   background-color:  rgb(68, 68, 244);
   color: white;
   padding: 1em;
@@ -164,27 +120,21 @@ button:focus-visible {
   margin-bottom: 1em;
 }
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+/* User Guide button on hover & focus */
+.user-guide-btn:hover, .user-guide-btn:focus {
   background-color: rgb(48, 48, 221);
 }
 
-/* Dropdown content (hidden by default) */
-.dropdown-content {
+/* User Guide content (hidden by default) */
+.user-guide-content {
   display: none;
   position: absolute;
   background-color: white;
-  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content p {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
   width: 57em;
 }
 
@@ -194,13 +144,13 @@ button:focus-visible {
 } */
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
+.user-guide-btn:hover .user-guide-btn:focus {
   background-color:  rgb(27, 27, 190);
 }
 
+/* User guide dropdown arrow */
 .arrow {
   position: absolute;
-  /* right: 10px; */
   top: 50%;
   transform: translateY(-50%);
 }
@@ -215,22 +165,6 @@ button:focus-visible {
   align-items: center;
 }
 
-.row2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.pic {
-  margin-left: 15em;
-}
-
-.pic3 {
-  margin-left: 18em;
-  padding-bottom: 3em;
-}
-
 .column {
   display: flex;
   flex-direction: column;
@@ -238,20 +172,28 @@ button:focus-visible {
   margin-left: 5em;
 }
 
-.column2 {
+.space-between-row {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 5em;
-  margin-bottom: 3em;
-  margin-right: 7em;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.lower {
+/* User guide content images */
+.example-graph {
+  margin-left: 15em;
+}
+
+.after-click {
   margin-right: 5em;
 }
 
-.click {
+.click-icon {
   position: absolute;
-  bottom: 20.75em;
+  bottom: 19.7em;
+}
+
+.guess-input-field-img {
+  margin-left: 18em;
+  padding-bottom: 3em;
 }

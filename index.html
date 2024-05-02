@@ -2,83 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css">
-  <title>Vite App</title>
-  <style>
-    /* Define CSS styles here */
-    #cy1, #cy2, #cy3 {
-      width: 1000px;
-      height: 400px;
-    }
-  </style>
+  <title>Network Flow App</title>
+  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+  <script src="./counter.js"></script>
+  <script src="./script.js"></script>
 </head>
 <body>
   <div class="main">
-    <div class="top">
+
+    <!-- Top box -->
+    <div class="top-container">
       <h2>Network flow - find the cut value</h2>
-      <!-- <p>User Guide</p> -->
-      <div class="dropdown">
-        <button id="showGuide" class="dropbtn">User Guide <span class="arrow">&#9660;</span></button>
-        <div id="dropdown-content" class="dropdown-content">
+      <div class="user-guide">
+
+        <!-- User Guide button -->
+        <button id="showGuide" class="user-guide-btn">User Guide <span class="arrow">&#9660;</span></button>
+        <div id="dropdown-content" class="user-guide-content">
           <p>Welcome! This website is designed to help people learn how to find the cut value of a directed graph.</p>
           <p>But first of all, what is a cut value? A cut value is when you take a graph and "cut" it into 2 groups. In an s-t cut, one group must contain s, and the other must contain t. The cut value is the number of edges that go from the s group into the t group. An edge coming from the t group to the s group does not contribute to the cut value.</p>
           <p>It may help to imagine the node groups as bodies of land, and the s-t cut as a body of water separating the two groups, hence the dolphin :)</p>
+          
+          <!-- Example of s-t cut on graph -->
           <p>For instance, in this graph, { s, a, b } is in the s group, and only { t } is in the t group. Then we look at the edges that connect the groups, and see that there is only 1 edges. This makes our cut value = 4.</p>
-          <img class="pic" src="pics/graph.png" alt="Description of the image" width="350" height="180">
+          <img class="example-graph" src="pics/graph.png" alt="Example of s-t cut on graph" width="350" height="180">
+          
+          <!-- Example of mouse click on a node in a graph -->
           <p>On this website, you select nodes to add to the s group (brown). Any unselected nodes will be placed in the t group (green). The edges connecting the two groups will turn blue, helping you to figure out the cut value.</p>
-          <div class="row2">
+          <div class="space-between-row">
           <div class="column">
-            <img src="pics/beforeGraph.png" alt="Description of the image" width="350" height="190">
-            <img class="click" src="pics/click.png" alt="Description of the image" width="50" height="50">
+            <img src="pics/beforeGraph.png" alt="Example of mouse click on a node in a graph" width="350" height="190">
+            <img class="click-icon" src="pics/click.png" alt="Mouse click image" width="50" height="50">
           </div>
-          <img src="pics/right-arrow.png" alt="Description of the image" width="40" height="40">
-          <img class="lower" src="pics/afterGraph.png" alt="Description of the image" width="350" height="185">
+          <img src="pics/right-arrow.png" alt="Right arrow" width="40" height="40">
+          <img class="after-click" src="pics/afterGraph.png" alt="Shows result of clicking on node: adds edge to s-t cut" width="350" height="185">
           </div>
+          
+          <!-- Guess input field picture -->
           <div>
           <p>You can use the graph to figure out the cut value, and then the input field to check your answer.</p>
-          <img class="pic3" src="pics/enterField.png" alt="Description of the image" width="250" height="105">
+          <img class="guess-input-field-img" src="pics/enterField.png" alt="Shows guess input field with enter button" width="250" height="100">
           </div>
         </div>
       </div>
+
+      <!-- Graph switching buttons -->
       <div>
         <button id="graph1Btn">Graph 1</button>
         <button id="graph2Btn">Graph 2</button>
         <button id="graph3Btn">Graph 3</button>
       </div>
+
+      <!-- Hidden textContent used to keep track of cut values -->
       <div id="cutValue">
-        <p style="display: none;">Cut Value: <span id="value">0</span></p>
-        <p style="display: none;">Cut Value: <span id="value2">0</span></p>
-        <p style="display: none;">Cut Value: <span id="value3">0</span></p>
+        <p style="display: none;">Cut Value: <span id="value"></span></p>
+        <p style="display: none;">Cut Value: <span id="value2"></span></p>
+        <p style="display: none;">Cut Value: <span id="value3"></span></p>
       </div>
     </div>
+
+    <!-- Shows the current graph here -->
     <div class="graphZone">
       <div>
         <div id="cy1" class="graph" style="display: block;"></div>
         <div id="cy2" class="graph" style="display: block;"></div>
         <div id="cy3" class="graph" style="display: block;"></div>
       </div>
+
+      <!-- Guess input field -->
       <div>
         <h3>What is the cut value?</h3>
-        <input id="guessInput" class="guess" type="text" placeholder="Enter text">
+        <input id="guessInput" class="guess-input-field" type="text" placeholder="Enter text">
         <button id="enterButton">Enter</button>
+        <!-- Shows if guess is correct or incorrect -->
         <h3 id="result"></h3>
-        <div class="row2">
+
+        <!-- Node color key + dolphin -->
+        <div class="space-between-row">
           <div>
-          <p class="row"><img src="pics/brownNode.png" alt="Description of the image" width="55" height="55"> node is in s group</p>
-          <p class="row"><img class="greenNode" src="pics/greenNode.png" alt="Description of the image" width="61" height="65"> node is in t group</p>
+          <p class="row"><img src="pics/brownNode.png" alt="Brown node" width="55" height="55"> node is in s group</p>
+          <p class="row"><img class="greenNode" src="pics/greenNode.png" alt="Green node" width="61" height="65"> node is in t group</p>
           </div>
-          <img src="pics/dolphin.png" alt="Description of the image" width="100" height="110">
+          <img src="pics/dolphin.png" alt="Dolphin cartoon" width="100" height="110">
         </div>
       </div>
     </div>
+
+    <!-- Bottom box -->
     <div class="footer">
       <p>Network flow materials developed by Leilani Titus</p>
     </div>
-  </div>
 
-  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script> <!-- Include Cytoscape library -->
-  <script src="./counter.js"></script> <!-- Include your counter.js file -->
-  <script src="./nodes.js"></script> <!-- Include your nodes.js file -->
+  </div>
+</body>
 </html>
