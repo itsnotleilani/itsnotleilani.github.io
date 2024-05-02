@@ -16,4 +16,4 @@ Guess input field for checking cut value
  
 User Guide to explain how to use the graphs
 
-<img width="500" alt="Screenshot 2024-05-02 at 11 01 34 AM" src="https://github.com/itsnotleilani/itsnotleilani.github.io/assets/86632826/97d0c631-f698-4631-99bc-7629123c9d5f">
+<img width="1512" alt="Screenshot 2024-05-02 at 11 01 34 AM" src="https://github.com/itsnotleilani/itsnotleilani.github.io/assets/86632826/97d0c631-f698-4631-99bc-7629123c9d5f">
