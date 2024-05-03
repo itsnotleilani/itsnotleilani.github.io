@@ -300,20 +300,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (node.id() === 's-1' || node.id() === 's-2' || node.id() === 's-3' || node.id() === 't-1' || node.id() === 't-2' || node.id() === 't-3') {
                 return;
             }
+
 			const nodeColor = node.style('background-color');
-
-			let will_connect_to_s = false;
-
-			node.incomers('edge').forEach(function(edge) {
-				const sourceColor = edge.source().style('background-color');
-				// Check if there exists a source node that is brown
-				if (sourceColor === brown) {
-					will_connect_to_s = true;
-				}
-			});
-
-			// If node is green and will connect to s, change to brown
-			if (nodeColor !== brown && will_connect_to_s) {
+			// If node is green, change to brown
+			if (nodeColor !== brown) {
 				node.style('background-color', brown);
 				// If outgoing edges are gray, change to blue and add to cut value
 				node.outgoers('edge').forEach(function(edge) {
@@ -333,6 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						subCutFunc(edge.data('label'));
 					}
 				});
+				
 			// If node is brown, change to green
 			} else {
 				node.style('background-color', green);
